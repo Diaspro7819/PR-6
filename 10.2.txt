@@ -1,0 +1,84 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+
+namespace MyApp
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = 6;
+            int[,] a = new int[n, n];
+
+            Random random = new Random();
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    a[i, j] = random.Next(-20, 20);
+                    Console.Write("{0,4}", a[i, j]);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            int max = a[0, 0];
+            int x = 0;
+            int k = 0;
+            int t = 0;
+            bool edit = false; 
+            //находим максимальное число
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (Math.Abs(a[i, j]) > max)
+                    {
+                        max = Math.Abs(a[i, j]);
+                    }
+                }
+            }
+            Console.WriteLine($"Максимальное по модулю число: {max}");
+            //редактирование: заменяем строки 0
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (edit)
+                    {
+                        a[i, j] = 0;
+                    }
+
+                    else if (Math.Abs(a[i, j]) == max)
+                    {
+                        k++;
+                        edit = true;
+                        j = -1;
+                    }
+                }
+                edit = false;
+            }
+            for (int i = 0; i < n;i++)
+            {
+                for(int j = 0; j < n; j++)
+                {
+                    if(edit)
+                    {
+                        
+                    }
+                }
+            }
+            // Вывод массива
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write("{0,4}", a[i, j]);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine($"Количество строк с этим числом: {k}");
+            Console.WriteLine();
+        }
+    }
+}
